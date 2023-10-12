@@ -5,17 +5,21 @@ body{
 #feed-posts{
     width: 400px;
     margin: 0 auto;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     #new-post-form{
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        height: 200px;
+        height: 160px;
 
         textarea{
             width: 300px;
             height: 160px;
         }
+    }
+
+    .post-content{
+        border-top: 2px solid grey;
     }
 }
