@@ -1,0 +1,23 @@
+header {
+  background-color: #306f71;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px; }
+  header .header-title {
+    color: yellow;
+    font-weight: bold;
+    font-size: 34px; }
+  header .session {
+    margin: auto 10px;
+    height: 34px;
+    font-size: 17px;
+    padding: auto;
+    color: beige;
+    position: relative;
+    top: 5px; }
+    header .session a {
+      color: inherit;
+      text-decoration: none;
+      padding-right: 6px; }
+    header .session a:first-child {
+      border-right: 3px solid beige; }
