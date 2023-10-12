@@ -1,5 +1,5 @@
 footer{
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     background-color: rgb(48, 111, 113);
     display: flex;
@@ -8,4 +8,5 @@ footer{
     align-items: center;
     color: beige;
     height: 30px;
+    margin-top: 10px;
 }

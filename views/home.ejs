@@ -1,2 +1,17 @@
 <link rel="stylesheet" href="/css/home.css"></link>
-<h1>This is home page!!!!</h1>
+<h1>Codial/Home</h1>
+<section id="feed-posts">
+    <h1>Posts</h1>
+    <% if (locals.user) {%>
+    <form action="/post/create" id="new-post-form" method="POST">
+        <textarea name="content" col="30" rol="10" placeholder="Type here.."></textarea>
+        <input type="submit" value="Post"></input>
+    </form>
+    <% } %>
+    <% posts.forEach((post)=> {%>
+        <div>
+            <h3><%= post.content %></h3>
+            <p>posted by - <%= post.user.name %></p>
+        </div>
+    <% }) %>
+</section>
