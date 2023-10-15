@@ -1,9 +1,14 @@
 body {
   background-color: #bde0b6; }
 
+#home-layout {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px 20px; }
+
 #feed-posts {
-  width: 400px;
-  margin: 0 auto;
   margin-bottom: 10px; }
   #feed-posts #new-post-form {
     display: flex;
@@ -16,3 +21,5 @@ body {
       height: 160px; }
   #feed-posts .post-content {
     border-top: 2px solid grey; }
+  #feed-posts .post-content:last-of-type {
+    padding-bottom: 50px; }

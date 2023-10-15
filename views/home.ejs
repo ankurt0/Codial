@@ -1,32 +1,29 @@
-<link rel="stylesheet" href="/css/home.css"></link>
-<h1>Codial/Home</h1>
-<section id="feed-posts">
-    <h1>Posts</h1>
-    <% if (locals.user) {%>
-    <form action="/post/create" id="new-post-form" method="POST">
-        <textarea name="content" col="30" rol="10" placeholder="Type here.."></textarea>
-        <input type="submit" value="Post"></input>
-    </form>
-    <% } %>
-    <% posts.forEach((post)=> {%>
-        <div class="post-content">
-            <h3><%= post.content %></h3>
-            <p>posted by - <%= post.user.name %></p>
-            <% if (locals.user) {%>
-                <form action="/comment/add" id="add-comment-form" method="POST">
-                    <input type="text" name="content" placeholder="Type your comment.."></input>
-                    <input type="hidden" name="post" value="<%= post._id %>"></input>
-                    <input type="submit" value="comment"></input>
-                </form>
+<link rel="stylesheet" href="/css/home.css">
+</link>
+<section id="home-layout">
+    <h1>Codial/Home</h1>
+    <section id="feed-posts">
+        <h1>Posts</h1>
+        <% if (locals.user) {%>
+            <form action="/post/create" id="new-post-form" method="POST">
+                <textarea name="content" col="30" rol="10" placeholder="Type here.."></textarea>
+                <input type="submit" value="Post"></input>
+            </form>
             <% } %>
-            <br>
-            <h4>Comments</h4>
-            <ul class="added-comments">
-                <% post.comments.forEach((comment)=> {%>
-                    <li><strong><%= comment.content %></strong> by <%= comment.user.name %> </li>
-                    
-                <% }) %>
-            </ul>
+                <% for(post of posts) {%>
+                    <%- include('_post.ejs') %>
+                        <% } %>
+    </section>
+    <section id="users-profile">
+        <h2> Friends </h2>
+        <div class="profile-list">
+            <% for(profileUser of allUsers) { %>
+                <div class="profile">
+                    <a class="profile-link" href="/users/profile/<%= profileUser._id %>">
+                        <%= profileUser.name %>
+                    </a>
+                </div>         
+            <% } %>
         </div>
-    <% }) %>
+    </section>
 </section>

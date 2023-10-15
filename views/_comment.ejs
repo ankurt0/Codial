@@ -1,0 +1,8 @@
+<li> <strong><%= comment.content %></strong> by <%= comment.user.name %> 
+    <% if(locals.user && (locals.user.id == post.user.id || locals.user.id == comment.user.id) ) { %>
+        <form method="POST" action="/comment/delete/<%= comment._id %>">
+            <input type="hidden" name="post" value="<%= post._id %>"></input>
+            <button>X</button>
+        </form>
+    <% } %>
+</li>

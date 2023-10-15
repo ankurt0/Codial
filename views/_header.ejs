@@ -3,11 +3,12 @@
     <div class="header-title">Codial</div>
     <div class="session">
         <% if(locals.user) { %>
-            <a href="/users/profile"><%= user.name %></a>
+            <a href="/users/profile/<%= user._id %>"><%= user.name %></a>
             <a href="/users/signOut">Sign Out</a>
         <% } else {%>
             <a href="/users/signIn">Sign In</a> 
             <a href="/users/signUp">Sign Up</a>
         <% } %>
+    <%- %>
     </div>
 </header>
