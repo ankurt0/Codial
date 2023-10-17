@@ -5,11 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
     <link rel="stylesheet" href="/css/layout.css"></link>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <%- style %>
 </head>
 <body>
     <%- include('_header.ejs'); %>
+    
     <%- body %>
     <%- include('_footer.ejs'); %>
+    <%- script %>
+    <% if(flash.success && flash.success.length>0) { %>
+        <script>
+            let alertTitle = "<%= flash.success %>";
+            swal(alertTitle , "success")
+        </script>
+    <% } %>
+    <% if(flash.error && flash.error.length>0) { %>
+        <script>
+            let errTitle = "<%= flash.error %>";
+            swal(errTitle , "error")
+        </script>
+    <% } %>
 </body>
 </html>

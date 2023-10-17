@@ -6,8 +6,12 @@ const db=require('./config/mongoose');
 const passport=require('passport');
 const session=require('express-session');
 const passportLocal=require('./config/passport_local_strategy');
+const passportJWT=require('./config/passport_jwt_strategy');
 const mongoStore=require('connect-mongo');
 const sassMiddleware=require('node-sass-middleware');
+const flash=require('connect-flash');
+const customMW=require('./config/flashMiddleware');
+const swal=require('sweetalert');
 const port=8000;
 
 
@@ -26,6 +30,7 @@ app.use(cookieParser());
 app.use(express.static('./assets'));
 //to move style and script link from sub pages into the layout head
 app.set('layout extractStyles', true);
+app.set('layout extractScripts', true);
 
 app.use(layouts);
 //with the help of below middleware we can pass our route handling part to router 
@@ -52,6 +57,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 // allow passport to use "express-session"
 app.use(passport.setAuthenticatedUser);
+app.use(flash());
+app.use(customMW.setFlash);
 app.use('/',require('./routes'));   
 
 

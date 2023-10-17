@@ -16,6 +16,7 @@
     </section>
     <section id="users-profile">
         <h2> Friends </h2>
+        <% if(locals.user) {%>
         <div class="profile-list">
             <% for(profileUser of allUsers) { %>
                 <div class="profile">
@@ -25,5 +26,6 @@
                 </div>         
             <% } %>
         </div>
+        <% } %>
     </section>
 </section>

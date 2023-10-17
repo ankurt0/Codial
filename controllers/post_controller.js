@@ -17,32 +17,23 @@ module.exports.createPost=function(req,res){
 
 }
 
-module.exports.deletePost=function(req,res){
+module.exports.deletePost=async function(req,res){
     const postId=req.params.id;
     console.log("post ID ",req.params.id);
-    Post.findById(postId).then((post)=>{
-        console.log(post,"post");
+    try{
+        let post=await Post.findById(postId);
         if(post.user==req.user.id)
         {
-            //authenticated to delete post
-            console.log("authenticated to delete");
-            Post.findByIdAndDelete(postId).then((post)=>{
-                console.log("deleted post",post);
-            });
-            Comment.deleteMany({post: postId}).then(()=>{
-                return res.redirect('back');
-            })
-            .catch((err)=>{
-                console.log("error in deleting comment",err);
-                return;
-            })
+            await Post.findByIdAndDelete(postId);
+            await Comment.deleteMany({post: postId})
+            return res.redirect('back');
         }
         else{
             return res.redirect('back');
         }
-    })
-    .catch((err)=>{
+    }
+    catch(err){
         console.log("sorry facing problems in deleting post ",err);
         return;
-    })
+    }
 }

@@ -4,17 +4,19 @@ const localStrategy=require('passport-local').Strategy;
 
 passport.use(new localStrategy({
         usernameField: 'email',
+        passReqToCallback: true,
     },
-    function(email,password,done){
+    function(req,email,password,done){
     User.findOne({email:email})
     .then((user)=>{
         if(!user || user.password!==password){
+            req.flash('error','creds not matching');
             return done(null,false);
         }
         return done(null,user);
     })
     .catch((err)=>{
-        console.log("error in authentication--->passport");
+        req.flash('error',err);
         return done(err);
     })
 }));
@@ -44,7 +46,7 @@ passport.checkAuthentication=((req,res,next)=>{
         return next();
     }
 
-    return res.redirect('signIn');
+    return res.redirect('/users/signIn');
 })
 
 passport.setAuthenticatedUser=((req,res,next)=>{
